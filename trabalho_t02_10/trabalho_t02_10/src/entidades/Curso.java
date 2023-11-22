@@ -7,19 +7,25 @@ public class Curso {
 	
 	private String lingua;
 	private int Unidades;
-	private List<Unidade> unidades;
+	private Unidade[] unidades = new Unidade[50];
+	private int numUnidades = 0;
 	 
 	@Override
 	public String toString() {
 		return "Curso [lingua=" + lingua + ", Unidades=" + Unidades + "]";
 	}
 	
+	public Curso(String lingua) {
+		this.lingua = lingua;
+	}
+	
 	public String verUnidades(String lingua){
 		
 		String saida = null;
-		for(int i = 0; i <= unidades.size() ; i++) {
-			System.out.println(i);
-			saida = saida + "\n"+ unidades.get(i).getTitulo().toString();
+		for(int i = 0; i <= numUnidades ; i++) {
+			
+			System.out.println("Unidade: " + i);
+			saida = saida + "\n"+ unidades[i].getTitulo().toString();
 		}
 		
 		return saida;

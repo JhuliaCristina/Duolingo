@@ -8,11 +8,13 @@ public class Usuario {
 	private String email;
 	private String apelido;
 	private String senha;
-	private int vidas;
+	private int vidas = 5;
 	private byte foto;
 	private boolean premium;
-	private List<Curso> cursos;
-	private List<Amigo> amigos;
+	private Curso[] cursos = new Curso[10];
+	private Usuario[] amigos = new Usuario[100];
+	private int numCursos = 0; 
+	private int numAmigos = 0;
  	
 	
 	public String getNome() {
@@ -51,36 +53,39 @@ public class Usuario {
 		return "Usuario [nome=" + nome + ", email=" + email + ", apelido=" + apelido + ", senha=" + senha + ", vidas="
 				+ vidas + ", foto=" + foto + ", premium=" + premium + "]";
 	}
-	public Usuario(String nome, String email, String apelido, String senha, byte foto) {
+	public Usuario(String nome, String email, String apelido, String senha) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.apelido = apelido;
 		this.senha = senha;
-		this.foto = foto;
 	}
 	
-	public String verCursos(String apelido){
-			
-			String saida = null;
-			for(int i = 0; i <= cursos.size() ; i++) {
-				System.out.println(i);
-				saida = saida + "\n"+ cursos.get(i).getLingua().toString();
-			}
-			
-			return saida;
-
-	}
+	public String verCursos() {
+		String saida = "***** Lista de Cursos cadastrados ***** \n" ;
+		for(int i = 0; i < numCursos; i++) {
+			System.out.println(i);
+			saida = saida + "\n"+ cursos[i].getLingua().toString();
+		}
+		return saida;
+	}	
 	
 	public String buscarAmigos(String apelido){
 		
 		String saida = null;
-		for(int i = 0; i <= amigos.size() ; i++) {
+		for(int i = 0; i <= numAmigos ; i++) {
 			System.out.println(i);
-			saida = saida + "\n"+ amigos.get(i).getAmigo().getNome().toString();
+			saida = saida + "\n"+ amigos[i].getNome().toString();
 		}
 		
 		return saida;
+	}
+	
+	public void adicionarAmigo(Usuario usuario) {
+		if(numAmigos <= 100) {
+			amigos[numAmigos] = usuario;
+		}
+		
 	}
 	
 	
