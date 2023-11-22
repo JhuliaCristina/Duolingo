@@ -8,6 +8,7 @@ public class Dados {
 	private int numUsuarios = 0;
 	private Curso[] cursos ;
 	private int numCursos = 0;
+	private String[] linguas = new String[] {"Inglês", "Português", "Francês", "Italiano", "Alemão", "Japonês", "Mandarim", "Russo", "Espanhol", "Coreano"}; 
 	
 	public Dados() {
 		usuarios = new Usuario[100];
@@ -80,50 +81,20 @@ public class Dados {
 
 
 
-	public void setNumCursos(int nProfs) {
-		this.nProfs = nProfs;
+	public void setNumCursos(int numCursos) {
+		this.numCursos = numCursos;
 	}
-
-	public Matricula[] getMatriculas() {
-		return matriculas;
-	}
-	
-	public Matricula getMatricula(int i) {
-		return matriculas[i];
-	}
-
-	public void setMatriculas(Matricula[] matriculas) {
-		this.matriculas = matriculas;
-	}
-	
-	public void setMatricula(int i, Matricula m) {
-		matriculas[i] = m;
-	}
-
-
-
-	public int getnMatriculas() {
-		return nMatriculas;
-	}
-
-
-
-	public void setnMatriculas(int nMatriculas) {
-		this.nMatriculas = nMatriculas;
-	}
-
-
 
 	public void preencherDados() {
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++){
 			String s = String.valueOf(i);
-			alunos[i] = new Aluno("Aluno".concat(s), "id".concat(s), "cpf".concat(s), 
-					"telefone".concat(s), "dataNascimento".concat(s), "endereco".concat(s));
-			professores[i] = new Professor("Professor".concat(s), "id".concat(s), "cpf".concat(s), 
-					"telefone".concat(s), i);
-			cursos[i] = new Curso("Curso".concat(s), "Conteudo".concat(s), i, professores[i]);
-			cursos[i].matricular(new Matricula(alunos[i], "hoje", i, "turma".concat(s) ));			
+			usuarios[i] = new Usuario("Nome".concat(s), "Email".concat(s), "Apelido".concat(s), 
+					"Senha".concat(s));
+			cursos[i] = new Curso(linguas[i].concat(s));
+						
 		}
-		nAlunos = nProfs = nCursos = 10;
+		numUsuarios = numCursos  = 10;
 	}
+	
+	
 }

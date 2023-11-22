@@ -6,13 +6,13 @@ import java.util.*;
 public class Curso {
 	
 	private String lingua;
-	private int Unidades;
-	private Unidade[] unidades = new Unidade[50];
+	private int unidades;
+	private Unidade[] unidadesCurso = new Unidade[50];
 	private int numUnidades = 0;
 	 
 	@Override
 	public String toString() {
-		return "Curso [lingua=" + lingua + ", Unidades=" + Unidades + "]";
+		return "Curso lingua=" + lingua + ", Unidades=" + Unidades + "]";
 	}
 	
 	public Curso(String lingua) {

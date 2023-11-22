@@ -1,6 +1,6 @@
 package entidades;
 
-public class Amigo {
+public class Amigo{
 
 	private Usuario amigo;
 	private Usuario usuario;

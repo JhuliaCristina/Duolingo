@@ -54,7 +54,6 @@ public class Usuario {
 				+ vidas + ", foto=" + foto + ", premium=" + premium + "]";
 	}
 	public Usuario(String nome, String email, String apelido, String senha) {
-		super();
 		this.nome = nome;
 		this.email = email;
 		this.apelido = apelido;
