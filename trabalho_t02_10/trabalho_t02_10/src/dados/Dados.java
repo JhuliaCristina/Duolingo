@@ -90,7 +90,7 @@ public class Dados {
 			String s = String.valueOf(i);
 			usuarios[i] = new Usuario("Nome".concat(s), "Email".concat(s), "Apelido".concat(s), 
 					"Senha".concat(s));
-			cursos[i] = new Curso(linguas[i].concat(s));
+			cursos[i] = new Curso(linguas[i]);
 						
 		}
 		numUsuarios = numCursos  = 10;

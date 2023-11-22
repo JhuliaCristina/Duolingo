@@ -9,15 +9,15 @@ public class Main {
 	
 	private static Scanner input = new Scanner(System.in);
 	private static Dados dados = new Dados();
-	
+	private static Usuario usuarioLogado;
 	
 	
 	public static void main(String[] args) {
+		
 		dados.preencherDados();
 		int op = -1;
 		boolean logado = false;
-		Usuario usuarioLogado;
-		
+	
 
 		
 		while(op != 0 && !logado){
@@ -35,7 +35,9 @@ public class Main {
 				case 1:
 					Pair<String, String> login = loginUsuario();
 					usuarioLogado = entrar(login.getKey(), login.getValue());
-					if(usuarioLogado != null) 
+					if(usuarioLogado != null) {
+						logado= true;
+					}
 					break;
 				case 2:
 					cadastrarUsuario();
@@ -44,6 +46,21 @@ public class Main {
 			}
 		}
 		
+		while(op != 0 && logado) {
+			System.out.print(imprimirMenu());
+			op = input.nextInt();
+			
+			switch(op) {
+				case 0: 
+					System.out.println("Obrigada por utilizar o Duolingo. Até a próxima!");
+					break;
+				case 1:
+					escolherLingua(usuarioLogado);
+					
+			}
+		}
+		
+	
 	}
 	
 	public static String imprimirMenuIncial() {
@@ -59,14 +76,7 @@ public class Main {
 	public static String imprimirMenu() {
 		String saida = new String("Escolha uma das opcoes a seguir:\n");
 		saida = saida + "00 - Sair da aplicacao\n";
-		saida = saida + "01 - Cadastrar novo aluno\n";
-		saida = saida + "02 - Remover aluno existente\n";
-		saida = saida + "03 - Editar aluno existente\n";
-		saida = saida + "04 - Listar alunos\n";
-		saida = saida + "05 - Cadastrar novo professor\n";
-		saida = saida + "06 - Remover professor existente\n";
-		saida = saida + "07 - Editar professor existente\n";
-		saida = saida + "08 - Listar professores\n";
+		saida = saida + "01 - Começar nova Língua\n";
 		return saida;
 	}
 	
@@ -90,8 +100,8 @@ public class Main {
 	public static Usuario entrar(String email, String senha) {
 		
 		for(int i = 0; i < dados.getNumUsuarios(); i++) {
-			if(email == dados.getUsuarios()[i].getEmail() && senha == dados.getUsuarios()[i].getSenha()) {
-				System.out.println("Login efetuado com sucesso!");
+			if(email.equalsIgnoreCase(dados.getUsuarios()[i].getEmail()) && senha.equals(dados.getUsuarios()[i].getSenha())) {
+				System.out.println("\nLogin efetuado com sucesso!\n");
 				return dados.getUsuarios()[i];
 			}
 		}
@@ -110,7 +120,8 @@ public class Main {
 		}
 		dados.setUsuario(dados.getNumUsuarios(), usuario);
 		dados.setNumUsuarios(dados.getNumUsuarios() + 1);
-		System.out.print("Usuário cadastrado com sucesso\n");
+		System.out.print("Usuário cadastrado com sucesso\n\n");
+		System.out.print(dados.getNumUsuarios() );
 		return true;
 	}
 	
@@ -135,6 +146,39 @@ public class Main {
 		
 		usuario = new Usuario(nome, email, apelido, senha);
 		return usuario;
+	}
+	
+	public static void escolherLingua(Usuario usuario) {
+		
+		boolean podeAdicionar = true;
+		
+		
+		System.out.print("Escolha uma das Línguas a seguir: \n");
+		for(int i = 0; i < dados.getNumCursos(); i++) {
+			System.out.print(i + " "+ dados.getCursos()[i].getLingua() + "\n");
+			
+		}
+		
+		System.out.print("Digite a Língua desejada: \n");
+		String lingua;
+		input.nextLine();
+		lingua = input.nextLine();
+		
+		for(int i = 0; i < usuario.getNumCursos(); i++) {
+			if(usuario.getCursos()[i].getLingua() == lingua) podeAdicionar = false ;
+			if(!podeAdicionar) System.out.print("Curso já cadastrado.\n"); 
+		}
+		
+		
+		for(int i = 0; i < dados.getNumCursos(); i++) {
+			if(dados.getCursos()[i].getLingua().equalsIgnoreCase(lingua) && podeAdicionar) {
+				System.out.print("\nCurso cadastrado com sucesso\n");
+				usuario.adicionarCurso(dados.getCursos()[i]);
+				System.out.print("Voltando ao menu... \n\n\n");
+			}
+			
+		}
+		
 	}
 	
 }

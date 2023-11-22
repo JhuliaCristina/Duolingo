@@ -12,7 +12,7 @@ public class Curso {
 	 
 	@Override
 	public String toString() {
-		return "Curso lingua=" + lingua + ", Unidades=" + Unidades + "]";
+		return "Curso lingua=" + lingua + ", Unidades=" + unidades + "]";
 	}
 	
 	public Curso(String lingua) {

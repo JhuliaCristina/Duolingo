@@ -48,6 +48,14 @@ public class Usuario {
 		this.foto = foto;
 	}
 	
+	public int getNumCursos() {
+		return numCursos;
+	}
+	
+	public Curso[] getCursos(){
+		return cursos;
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [nome=" + nome + ", email=" + email + ", apelido=" + apelido + ", senha=" + senha + ", vidas="
@@ -83,8 +91,16 @@ public class Usuario {
 	public void adicionarAmigo(Usuario usuario) {
 		if(numAmigos <= 100) {
 			amigos[numAmigos] = usuario;
+			numAmigos += 1;
 		}
 		
+	}
+	
+	public void adicionarCurso(Curso curso) {
+		if(numCursos <= 10) {
+			cursos[numCursos] = curso;
+			numCursos += 1;
+		}
 	}
 	
 	
