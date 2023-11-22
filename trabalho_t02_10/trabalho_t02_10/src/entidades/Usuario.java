@@ -17,6 +17,14 @@ public class Usuario {
 	private int numAmigos = 0;
  	
 	
+	
+	
+	public Usuario[] getAmigos() {
+		return amigos;
+	}
+	public void setAmigos(Usuario[] amigos) {
+		this.amigos = amigos;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -52,14 +60,21 @@ public class Usuario {
 		return numCursos;
 	}
 	
+	public int getNumAmigos() {
+		return numAmigos;
+	}
+	
 	public Curso[] getCursos(){
 		return cursos;
 	}
 	
+	public void setPremium(boolean premium) {
+		this.premium = premium;
+	}
+	
 	@Override
 	public String toString() {
-		return "Usuario [nome=" + nome + ", email=" + email + ", apelido=" + apelido + ", senha=" + senha + ", vidas="
-				+ vidas + ", foto=" + foto + ", premium=" + premium + "]";
+		return "Usuario [nome= " + nome + ", email= " + email + ", apelido= " + apelido + "\n" ;
 	}
 	public Usuario(String nome, String email, String apelido, String senha) {
 		this.nome = nome;

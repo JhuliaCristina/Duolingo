@@ -9,10 +9,14 @@ public class Dados {
 	private Curso[] cursos ;
 	private int numCursos = 0;
 	private String[] linguas = new String[] {"Inglês", "Português", "Francês", "Italiano", "Alemão", "Japonês", "Mandarim", "Russo", "Espanhol", "Coreano"}; 
+	private Unidade[] unidades ;
+	private int numUnidades = 0;
+	
 	
 	public Dados() {
 		usuarios = new Usuario[100];
 		cursos = new Curso[10];
+		unidades = new Unidade[20];
 	}
 	
 	
@@ -91,9 +95,14 @@ public class Dados {
 			usuarios[i] = new Usuario("Nome".concat(s), "Email".concat(s), "Apelido".concat(s), 
 					"Senha".concat(s));
 			cursos[i] = new Curso(linguas[i]);
+			
+			for(int j = 1; j <= 10; j++){
+				unidades[j] = new Unidade("Unidade " + j, cursos[i].getLingua());
+				cursos[i].setUnidade(j, unidades[j]);
+			}
 						
 		}
-		numUsuarios = numCursos  = 10;
+		numUsuarios = numCursos  = numUnidades =  10;
 	}
 	
 	
